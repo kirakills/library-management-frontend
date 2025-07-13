@@ -1,0 +1,453 @@
+/* General App Styles */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif; /* Use the imported font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5; /* Lighter, subtle background */
+  color: #333;
+}
+
+.App {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 280px; /* Slightly wider sidebar */
+  min-width: 280px;
+  background-color: #2c3e50; /* Deeper dark blue/grey */
+  color: #ecf0f1; /* Light text for contrast */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+  padding: 30px 0;
+  box-sizing: border-box; /* Include padding in width */
+  position: sticky; /* Keep sidebar visible on scroll */
+  top: 0;
+  left: 0;
+  height: 100vh; /* Make it full height */
+}
+
+.sidebar-header {
+  padding: 10px 25px;
+  border-bottom: 1px solid #3b526b;
+  margin-bottom: 25px;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #fff;
+  text-align: left;
+  font-weight: 600; /* Semi-bold */
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebar-nav li {
+  margin-bottom: 8px; /* More space between items */
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  color: #bdc3c7; /* Lighter text color */
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500; /* Medium weight */
+  transition: background-color 0.2s ease, color 0.2s ease, border-left 0.2s ease;
+  border-left: 5px solid transparent; /* For active indicator */
+}
+
+.sidebar-nav a:hover {
+  background-color: #34495e; /* Darker on hover */
+  color: #fefefe;
+  border-left-color: #3498db; /* Accent border on hover */
+}
+
+.sidebar-nav li.active a {
+  background-color: #3498db; /* Accent blue for active item */
+  color: white;
+  font-weight: bold;
+  border-left-color: #2980b9; /* Darker accent border for active */
+}
+
+.sidebar-nav a i {
+  margin-right: 15px; /* More space for icons */
+  width: 24px; /* Ensure consistent icon spacing */
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.sidebar-footer {
+  padding: 20px 25px;
+  border-top: 1px solid #495057;
+  margin-top: auto;
+  text-align: left;
+}
+
+.sidebar-footer p {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #adb5bd;
+}
+
+.sidebar-footer button {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #e74c3c; /* Red for logout */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+  font-weight: 600;
+}
+
+.sidebar-footer button:hover {
+  background-color: #c0392b;
+}
+
+.sidebar-footer a { /* Settings link */
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  color: #bdc3c7;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.sidebar-footer a:hover {
+  color: #fff;
+}
+.sidebar-footer a i {
+  margin-right: 15px;
+}
+
+
+/* Main Content Area */
+.main-content {
+  flex-grow: 1;
+  padding: 30px; /* Consistent padding */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+/* Header within main-content (top bar on dashboard) */
+.main-header {
+  width: 100%;
+  max-width: 900px; /* Constrain header width too */
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.main-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: #333;
+  font-weight: 600;
+}
+.main-header p {
+  margin: 0;
+  font-weight: 400;
+  color: #666;
+}
+.main-header strong {
+  font-weight: bold;
+  color: #333;
+}
+.main-header button { /* Logout button in header */
+  padding: 8px 15px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+.main-header button:hover {
+  background-color: #c0392b;
+}
+
+
+/* Common Section Containers (Forms, Lists, Reports) */
+.loan-reservation-form-container,
+.book-form-container,
+.member-form-container,
+.book-list-container,
+.member-list-container,
+.report-viewer-container,
+.auth-container,
+.dashboard-home-container {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* More prominent shadow */
+  padding: 30px; /* More padding */
+  margin-bottom: 30px;
+  text-align: left;
+  width: 100%;
+  max-width: 900px; /* Crucial for controlling "stretched" content */
+  box-sizing: border-box;
+}
+/* No margin-bottom for the very last section */
+.main-content > *:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Forms Container for side-by-side arrangement */
+.forms-grid-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column */
+  gap: 30px;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Common Form Field Styles */
+.book-form-container h2,
+.member-form-container h2,
+.loan-reservation-form-container h2,
+.auth-container h2 {
+  text-align: center;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.book-form-container div,
+.member-form-container div,
+.loan-reservation-form-container div,
+.auth-container div {
+  margin-bottom: 15px;
+}
+
+.book-form-container label,
+.member-form-container label,
+.loan-reservation-form-container label,
+.auth-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500; /* Medium weight */
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.book-form-container input[type="text"],
+.book-form-container input[type="date"],
+.book-form-container select,
+.member-form-container input[type="text"],
+.member-form-container input[type="email"],
+.loan-reservation-form-container input[type="date"],
+.loan-reservation-form-container select,
+.auth-container input[type="text"],
+.auth-container input[type="password"] {
+  width: calc(100% - 22px);
+  padding: 12px; /* Increased padding */
+  border: 1px solid #ddd; /* Lighter border */
+  border-radius: 6px; /* Slightly more rounded */
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-form-container input:focus,
+.member-form-container input:focus,
+.loan-reservation-form-container input:focus,
+.auth-container input:focus,
+.book-form-container select:focus,
+.loan-reservation-form-container select:focus {
+  border-color: #3498db; /* Accent blue on focus */
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25); /* Accent shadow on focus */
+  outline: none;
+}
+
+.book-form-container button,
+.member-form-container button,
+.loan-reservation-form-container button,
+.auth-container button {
+  padding: 12px 25px; /* More padding */
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600; /* Semi-bold */
+  transition: background-color 0.2s ease;
+  margin-top: 15px; /* More space above buttons */
+}
+
+.book-form-container button:hover,
+.member-form-container button:hover,
+.loan-reservation-form-container button:hover,
+.auth-container button:hover {
+  background-color: #218838;
+}
+
+.loan-reservation-form-container button:first-of-type,
+.auth-container button {
+  background-color: #3498db; /* Blue accent for primary action */
+}
+.loan-reservation-form-container button:first-of-type:hover,
+.auth-container button:hover {
+  background-color: #2980b9;
+}
+
+
+/* Tables Styles */
+.books-table,
+.members-table,
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px; /* More margin above tables */
+  font-size: 0.95rem;
+  background-color: #fff;
+  border-radius: 8px; /* Rounded corners for tables too */
+  overflow: hidden; /* Hide overflow for rounded corners */
+}
+
+.books-table th, .books-table td,
+.members-table th, .members-table td,
+.report-table th, .report-table td {
+  border: 1px solid #f0f0f0; /* Lighter borders for cells */
+  padding: 15px; /* More padding in cells */
+  text-align: left;
+}
+
+.books-table th,
+.members-table th,
+.report-table th {
+  background-color: #f9f9f9; /* Lighter header background */
+  font-weight: 600;
+  color: #555;
+}
+
+.books-table button,
+.members-table button {
+  padding: 8px 15px; /* More padding */
+  background-color: #3498db; /* Consistent blue for edit */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+  font-weight: 500;
+}
+
+.books-table button:hover,
+.members-table button:hover {
+  background-color: #2980b9;
+}
+
+.books-table button:last-of-type, /* Delete button */
+.members-table button:last-of-type {
+  background-color: #e74c3c; /* Consistent red for delete */
+  margin-left: 8px; /* More space */
+}
+
+.books-table button:last-of-type:hover,
+.members-table button:last-of-type:hover {
+  background-color: #c0392b;
+}
+
+/* Media Query for Responsiveness (Mobile First Approach) */
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column; /* Stack sidebar and content vertically */
+  }
+
+  .sidebar {
+    width: 100%; /* Sidebar takes full width at top */
+    min-width: unset;
+    height: auto; /* Height adapts to content */
+    padding: 15px 0; /* Adjust padding */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative; /* Remove sticky on mobile */
+  }
+  .sidebar-header {
+    text-align: center;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  .sidebar-header h3 {
+    text-align: center;
+    font-size: 1.4rem; /* Slightly smaller font */
+  }
+  .sidebar-nav ul {
+    display: flex; /* Horizontal navigation on mobile */
+    justify-content: center;
+    flex-wrap: wrap; /* Allow items to wrap */
+    border-top: 1px solid #495057; /* Separator for mobile nav */
+    padding-top: 10px;
+  }
+  .sidebar-nav li {
+    margin: 5px 8px; /* Adjust spacing */
+  }
+  .sidebar-nav a {
+    padding: 8px 12px;
+    font-size: 0.85rem; /* Smaller font */
+    flex-direction: column; /* Stack icon and label */
+    border-left: none; /* Remove left border */
+    border-bottom: 3px solid transparent; /* Use bottom border for active */
+  }
+  .sidebar-nav a:hover {
+    border-left-color: transparent;
+    border-bottom-color: #3498db; /* Accent border on bottom hover */
+  }
+  .sidebar-nav li.active a {
+    border-left-color: transparent;
+    border-bottom-color: #3498db; /* Active on bottom */
+  }
+  .sidebar-nav a i {
+    margin-right: 0;
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+  .sidebar-footer {
+    display: none; /* Hide footer on very small screens to save space */
+  }
+
+  .main-content {
+    padding: 1.5rem; /* Less padding on small screens */
+    align-items: stretch; /* Stretch content to fill column */
+  }
+  .main-header {
+    flex-direction: column; /* Stack header elements */
+    text-align: center;
+    align-items: center;
+  }
+  .main-header h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .forms-grid-container {
+    grid-template-columns: 1fr; /* Stack forms vertically */
+  }
+  .auth-container {
+    padding: 20px;
+  }
+  .auth-container h2 {
+    font-size: 1.5rem;
+  }
+}
