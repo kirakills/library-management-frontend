@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Member } from '../interfaces'; // Import Member interface
+import { useAuth } from '../context/AuthContext'; // IMPORT useAuth to get user roles
 
 // Reuse constants
 const FRAPPE_API_KEY = '6eab1607a5fe04b'; // Your API Key
@@ -13,6 +14,8 @@ interface MemberListProps {
 }
 
 const MemberList: React.FC<MemberListProps> = ({ onEdit, onMemberAddedOrUpdated }) => {
+  const { user } = useAuth(); // Get user from auth context for conditional rendering
+
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -93,6 +96,9 @@ const MemberList: React.FC<MemberListProps> = ({ onEdit, onMemberAddedOrUpdated 
     }
   };
 
+  // Determine if user has permission to see/use management actions (Edit/Delete/Export)
+  const canManageMembers = user?.roles.includes('Administrator') || user?.roles.includes('Librarian');
+
   if (loading) return <div>Loading members...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -109,8 +115,8 @@ const MemberList: React.FC<MemberListProps> = ({ onEdit, onMemberAddedOrUpdated 
               <th>Membership ID</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>Actions</th>
-              <th>Export</th> {/* ADD THIS COLUMN HEADER */}
+              {canManageMembers && <th>Actions</th>} {/* Conditionally render Actions header */}
+              {canManageMembers && <th>Export</th>} {/* Conditionally render Export header */}
             </tr>
           </thead>
           <tbody>
@@ -120,13 +126,17 @@ const MemberList: React.FC<MemberListProps> = ({ onEdit, onMemberAddedOrUpdated 
                 <td>{member.membership_id}</td>
                 <td>{member.email}</td>
                 <td>{member.phone || 'N/A'}</td>
-                <td>
-                  <button onClick={() => onEdit(member)}>Edit</button>
-                  <button onClick={() => handleDelete(member.name)} style={{ marginLeft: '5px' }}>Delete</button>
-                </td>
-                <td> {/* ADD THIS NEW TABLE DATA CELL */}
-                  <button onClick={() => handleExportCsv(member.name)}>Export CSV</button>
-                </td>
+                {canManageMembers && ( /* Conditionally render Actions cell */
+                  <td>
+                    <button onClick={() => onEdit(member)}>Edit</button>
+                    <button onClick={() => handleDelete(member.name)} style={{ marginLeft: '5px' }}>Delete</button>
+                  </td>
+                )}
+                {canManageMembers && ( /* Conditionally render Export cell */
+                  <td>
+                    <button onClick={() => handleExportCsv(member.name)}>Export CSV</button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
